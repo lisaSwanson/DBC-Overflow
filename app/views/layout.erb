@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/application.css">
+  <!-- Load Vollkorn font -->
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+  <body>
+
+    <div id='cssmenu'>
+      <ul>
+        <li class='active'><a href='index.html'><span>DBC Overflow</span></a></li>
+        <li class='active'><a href='index.html'><span>Home</span></a></li>
+
+        <% if session[:user_id] %>
+        <li class='has-sub'><a href='#'><span>Hi</span></a>
+        <ul>
+          <li class='has-sub'><a href='#'><span>Profile</span></a>
+            <ul>
+              <li><a href='#'><span>Stats</span></a></li>
+              <li class='last'><a href='#'><span>Modify</span></a></li>
+            </ul>
+        </ul>
+        <li><a href='#'><span>Logout</span></a></li>
+        <% else %>
+        <li><a href='#'><span>Login</span></a></li>
+        <li class='last'><a href='#'><span>Register</span></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>
