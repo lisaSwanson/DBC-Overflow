@@ -1,0 +1,6 @@
+<div class="tag_container">
+	<% @tags = Tag.all %>
+		<% @tags.each do |tag| %>
+			<div class="tag_box" id="<%= tag.name %>"><span><%= tag.name %></span></div>
+		<% end %>
+</div>

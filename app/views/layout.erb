@@ -11,6 +11,8 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="/css/form.css">
+  <link rel="stylesheet" href="/css/main.css">
   <!-- Load Vollkorn font -->
   <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
 
@@ -19,28 +21,47 @@
 
   <title></title>
 </head>
-  <body>
+<body>
 
-    <div id='cssmenu'>
-      <ul>
-        <li class='active'><a href='index.html'><span>DBC Overflow</span></a></li>
-        <li class='active'><a href='index.html'><span>Home</span></a></li>
-
-        <% if session[:user_id] %>
-        <li class='has-sub'><a href='#'><span>Hi</span></a>
+  <div id='cssmenu'>
+    <ul>
+      <li><a href='/'><span>Home</span></a></li>
+      <% if session[:user_id] %>
+      <li class='has-sub'><a href='#'><span>Welcome&nbsp;<%=session[:username]%></span></a>
         <ul>
           <li class='has-sub'><a href='#'><span>Profile</span></a>
             <ul>
               <li><a href='#'><span>Stats</span></a></li>
               <li class='last'><a href='#'><span>Modify</span></a></li>
             </ul>
+          </ul>
+          <li><a href='/users/logout'><span>Logout</span></a></li>
+      <% else %>
+        <li><a href='/users/login'><span>Login</span></a></li>
+        <li class='last'><a href='/users/new'><span>Sign up</span></a></li>
+          <% end %>
+    </ul>
+  </div>
+  <div id="header">
+    <br class="cbt">
+    <a href="/" ><img src="/img/devbootcamp.png">
+    </a>
+    <div id="hmenus">
+      <div class="nav mainnavs">
+        <ul>
+          <li><a id="nav-tags" href="/tags">Tags</a></li>
+          <li><a id="nav-users" href="/users">Users</a></li>
+          <li><a id="nav-users" href="/questions">Questions</a></li>
+          <% if session[:user_id] %>
+          <li><a id="nav-badges" href="/questions/ask">Ask Question</a></li>
+          <% end %>
         </ul>
-        <li><a href='#'><span>Logout</span></a></li>
-        <% else %>
-        <li><a href='#'><span>Login</span></a></li>
-        <li class='last'><a href='#'><span>Register</span></a></li>
-        <% end %>
-      </ul>
+      </div>
     </div>
-  </body>
+  </div>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
 </html>

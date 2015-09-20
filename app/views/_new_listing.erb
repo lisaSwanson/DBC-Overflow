@@ -1,0 +1,35 @@
+<% questions = Question.all %>
+<% questions.each do |quest| %>
+	<% votes = Vote.count(vote_for_id: quest.id, vote_for_type: "question")  %>
+<!-- begin block of one row of question information -->
+	<div class="question_summary">
+		<div class="cp">
+			<div class="votes">
+						<div class="mini_counts"><span title="0 votes"><%= votes %></span></div>
+						<div>Votes</div>
+			</div>
+			<div class="status answered">
+					<div class="mini_counts"><span title="1 answer">1</span></div>
+					<div>Answers</div>
+			</div>
+		</div>
+		<div class="summary">
+			<h3><a href="/questions/ask/<%=quest.id%>"><%=quest.title%></a></h3>
+			<div class="tags">
+				<% tag_map = TagMap.all.where(question_desc_id: quest.id)%>
+		
+					<% tag_map.each do |tag| %>
+						<a href="/questions/tags/<%= tag.tag.name %>" class="post_tag"><%= tag.tag.name %></a>
+					<%end%>
+			</div>
+			<div class="started box1">
+				<a href="/users/<%= quest.user_id %>"><%= quest.user.username%></a>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<!-- end of question block -->
+
+
+

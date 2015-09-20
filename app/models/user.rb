@@ -1,11 +1,22 @@
 class User < ActiveRecord::Base
   # has_secure_password
-  has_many :responses, 
+  include BCrypt
+
+  has_many :responses 
   has_many :questions
   has_many :answers
 
-  validates_uniqueness_of :email, :on => :create
+  def password
+    @password ||= Password.new(password_hash)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
+
+  validates :email, uniqueness: { case_sensitive: false }
   validates_format_of :email, :with => /@/, :message => "Email addreess must include @ sign."
-	validates_presence_of, :username, :email, :password
+	validates_presence_of :username, :email, :password
 
 end

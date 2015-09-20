@@ -1,0 +1,13 @@
+<form class="form-container" action="/questions/ask" method="post">
+<% if @errors%>
+	<h3 style="color: red;"><%= @errors %></h3>
+<%end%>
+<div class="form-title"><h2>Ask DBC your Question..</h2></div>
+<input class="form-field" id="form_title" type="text" name="title" placeholder="Title" required /><br />
+<textarea class="form-field" id="form_text" name="question_body" placeholder="What is your question" required rows="4"></textarea>
+<input class="form-field" id="form_tag" type="text" name="tags" placeholder="Please put a space between tags" required /><br />
+<div class="submit-container">
+<input class="submit-button" type="submit" value="Submit" />
+</div>
+</form>
+
